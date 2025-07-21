@@ -1,0 +1,35 @@
+backend:
+  name: github   
+  repo: damianos-pappas/test-netlify  
+  branch: main     
+  auth_type: implicit
+  client_id: Ov23liMAQfgPRzW4zQE7
+
+publish_mode: editorial_workflow
+
+media_folder: "images"
+public_folder: "/images"
+
+local_backend: true
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - label: "README"
+        name: readme
+        file: "README.md"
+        fields:
+          - {label: Title, name: title, widget: string, required: false}
+          - {label: Body,  name: body,  widget: markdown}
+      # add more fixed files here or convert to a folder collection later
+
+  - name: docs
+    label: Docs (new)
+    folder: "docs"        # you may create this folder
+    create: true          # allow new docs
+    slug: "{{slug}}"
+    format: frontmatter   # Decap will add YAML frontmatter even if originals lacked it
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Body,  name: body,  widget: markdown}
